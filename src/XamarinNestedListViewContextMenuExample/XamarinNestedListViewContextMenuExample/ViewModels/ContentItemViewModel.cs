@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Xamarin.Forms;
 using XamarinNestedListViewContextMenuExample.Models;
 
 namespace XamarinNestedListViewContextMenuExample.ViewModels
@@ -11,6 +12,7 @@ namespace XamarinNestedListViewContextMenuExample.ViewModels
         public string ContentText { get => _contentItem.ContentText; }
         public ObservableCollection<ContentItemViewModel> ContentItems { get; set; } = new ObservableCollection<ContentItemViewModel>();
         public ContentItemViewModel This => this;
+        public GridLength Height = GridLength.Auto;
 
         ContentItemModel _contentItem;
 
@@ -22,6 +24,11 @@ namespace XamarinNestedListViewContextMenuExample.ViewModels
             {
                 ContentItems.Add(new ContentItemViewModel(subItem));
             }
+        }
+
+        public void OnSizeAllocated(double width, double height)
+        {
+            Height = height;
         }
     }
 }

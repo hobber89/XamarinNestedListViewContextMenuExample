@@ -7,7 +7,7 @@
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>         <!-- 0: ContentText   TODO: Bind height -->
+                <RowDefinition Height="auto"/>       <!-- 0: ContentText   TODO: Bind height -->
                 <RowDefinition Height="30"/>         <!-- 1: ContentItems  TODO: Bind height  -->
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -24,7 +24,7 @@
                         <ViewCell>
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="30"/>   <!-- 0: Sub Item's Content  TODO: Bind height-->
+                                    <RowDefinition Height="{Binding Height}"/>   <!-- 0: Sub Item's Content -->
                                 </Grid.RowDefinitions>
                                 <views:NestedContentListView Grid.Row="0" Grid.Column="0" BindingContext="{Binding This}" Margin="20,0,0,0"/>
                             </Grid>
