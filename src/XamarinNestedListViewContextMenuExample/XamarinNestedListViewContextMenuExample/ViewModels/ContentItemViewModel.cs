@@ -13,6 +13,7 @@ namespace XamarinNestedListViewContextMenuExample.ViewModels
         public ObservableCollection<ContentItemViewModel> ContentItems { get; set; } = new ObservableCollection<ContentItemViewModel>();
         public ContentItemViewModel This => this;
         public GridLength Height = GridLength.Auto;
+        public bool HasSubContentItems { get => _contentItem.ContentItems.Count > 0; }
 
         ContentItemModel _contentItem;
 
@@ -24,6 +25,16 @@ namespace XamarinNestedListViewContextMenuExample.ViewModels
             {
                 ContentItems.Add(new ContentItemViewModel(subItem));
             }
+        }
+
+        public void AddSubContentItem(ContentItemModel subContentItem)
+        {
+            _contentItem.ContentItems.Add(subContentItem);
+            ContentItems.Add(new ContentItemViewModel(subContentItem));
+
+            //If this subContenItem is the first item, HasSubContentItems has changed
+            if (ContentItems.Count == 1)
+                OnPropertyChanged(nameof(HasSubContentItems));
         }
 
         public void OnSizeAllocated(double width, double height)
