@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:XamarinNestedListViewContextMenuExample.Views"
+             x:Class="XamarinNestedListViewContextMenuExample.Views.NestedContentListView">
+  <ContentView.Content>
+
+      <Grid>
+          <Grid.RowDefinitions>
+              <RowDefinition Height="30"/>                          <!-- 0: ContentText -->
+              <RowDefinition Height="0"/>                           <!-- 1: ContentItems -->
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>  
+              <ColumnDefinition Width="20"/>                        <!-- 0: Intend -->
+              <ColumnDefinition Width="10"/>                        <!-- 1: List item symbol -->
+              <ColumnDefinition Width="100*"/>                      <!-- 2: ContentText -->
+          </Grid.ColumnDefinitions>
+
+          <Label Grid.Row="0" Grid.Column="1" Text="•"/>
+          <Label Grid.Row="0" Grid.Column="2" Text="{Binding ContentText}"/>
+          <ListView Grid.Row="1" ItemsSource="{Binding ContentItems}" HasUnevenRows="True" HorizontalOptions="Fill">
+              <ListView.ItemTemplate HorizontalOptions="Fill">
+                  <DataTemplate>
+                      <ViewCell>
+                            <views:NestedContentListView Grid.Row="1" Grid.Column="1" BindingContext="{Binding This}"/>
+                        </ViewCell>
+                  </DataTemplate>
+              </ListView.ItemTemplate>
+          </ListView>
+
+      </Grid>
+  </ContentView.Content>
+</ContentView>
