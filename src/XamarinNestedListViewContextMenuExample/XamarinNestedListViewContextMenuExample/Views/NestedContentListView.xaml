@@ -3,31 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:XamarinNestedListViewContextMenuExample.Views"
              x:Class="XamarinNestedListViewContextMenuExample.Views.NestedContentListView">
-  <ContentView.Content>
+    <ContentView.Content>
 
-      <Grid>
-          <Grid.RowDefinitions>
-              <RowDefinition Height="30"/>                          <!-- 0: ContentText -->
-              <RowDefinition Height="0"/>                           <!-- 1: ContentItems -->
-          </Grid.RowDefinitions>
-          <Grid.ColumnDefinitions>  
-              <ColumnDefinition Width="20"/>                        <!-- 0: Intend -->
-              <ColumnDefinition Width="10"/>                        <!-- 1: List item symbol -->
-              <ColumnDefinition Width="100*"/>                      <!-- 2: ContentText -->
-          </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>         <!-- 0: ContentText   TODO: Bind height -->
+                <RowDefinition Height="30"/>         <!-- 1: ContentItems  TODO: Bind height  -->
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>       <!-- 0: Intend -->
+                <ColumnDefinition Width="10"/>       <!-- 1: List item symbol -->
+                <ColumnDefinition Width="100*"/>     <!-- 2: ContentText -->
+            </Grid.ColumnDefinitions>
 
-          <Label Grid.Row="0" Grid.Column="1" Text="•"/>
-          <Label Grid.Row="0" Grid.Column="2" Text="{Binding ContentText}"/>
-          <ListView Grid.Row="1" ItemsSource="{Binding ContentItems}" HasUnevenRows="True" HorizontalOptions="Fill">
-              <ListView.ItemTemplate HorizontalOptions="Fill">
-                  <DataTemplate>
-                      <ViewCell>
-                            <views:NestedContentListView Grid.Row="1" Grid.Column="1" BindingContext="{Binding This}"/>
+            <Label Grid.Row="0" Grid.Column="1" Text="•"/>
+            <Label Grid.Row="0" Grid.Column="2" Text="{Binding ContentText}"/>
+            <ListView Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding ContentItems}" HasUnevenRows="True" HorizontalOptions="Fill">
+                <ListView.ItemTemplate HorizontalOptions="Fill">
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"/>   <!-- 0: Sub Item's Content  TODO: Bind height-->
+                                </Grid.RowDefinitions>
+                                <views:NestedContentListView Grid.Row="0" Grid.Column="0" BindingContext="{Binding This}" Margin="20,0,0,0"/>
+                            </Grid>
                         </ViewCell>
-                  </DataTemplate>
-              </ListView.ItemTemplate>
-          </ListView>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-      </Grid>
+        </Grid>
   </ContentView.Content>
 </ContentView>
