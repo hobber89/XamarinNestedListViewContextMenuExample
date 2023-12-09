@@ -14,9 +14,11 @@ namespace XamarinNestedListViewContextMenuExample.ViewModels
         public MainPageViewModel()
         {
             ContentItemModel contentItem = new ContentItemModel("FIRST ITEM");
-            TopLevelContentItem =  new ContentItemViewModel(contentItem);
+            TopLevelContentItem =  new ContentItemViewModel(contentItem, null);
             ContentItemModel subContentItem = new ContentItemModel("FIRST SUB ITEM");
             TopLevelContentItem.AddSubContentItem(subContentItem);
+            ContentItemModel subContentItem2 = new ContentItemModel("SECOND SUB ITEM");
+            TopLevelContentItem.AddSubContentItem(subContentItem2);
         }
     }
 }

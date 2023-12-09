@@ -7,8 +7,8 @@
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>       <!-- 0: ContentText   TODO: Bind height -->
-                <RowDefinition Height="30"/>         <!-- 1: ContentItems  TODO: Bind height  -->
+                <RowDefinition Height="auto"/>                      <!-- 0: ContentText   TODO: Bind height -->
+                <RowDefinition Height="{Binding SubItemsHeight}"/>  <!-- 1: ContentItems  TODO: Bind height  -->
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>       <!-- 0: Intend -->
@@ -17,7 +17,7 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0" Grid.Column="1" Text="•"/>
-            <Label Grid.Row="0" Grid.Column="2" Text="{Binding ContentText}"/>
+            <Label Grid.Row="0" Grid.Column="2" Text="{Binding ContentText}" SizeChanged="ContentTextLabel_SizeChanged"/>
             <ListView Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding ContentItems}" HasUnevenRows="True" HorizontalOptions="Fill" IsVisible="{Binding HasSubContentItems}">
                 <ListView.ItemTemplate HorizontalOptions="Fill">
                     <DataTemplate>
