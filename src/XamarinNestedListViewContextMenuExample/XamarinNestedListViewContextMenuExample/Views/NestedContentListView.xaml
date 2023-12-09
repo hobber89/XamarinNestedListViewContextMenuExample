@@ -24,7 +24,7 @@
                         <ViewCell>
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="{Binding Height}"/>   <!-- 0: Sub Item's Content -->
+                                    <RowDefinition Height="{Binding TotalHeight}"/>   <!-- 0: Sub Item's Content -->
                                 </Grid.RowDefinitions>
                                 <views:NestedContentListView Grid.Row="0" Grid.Column="0" BindingContext="{Binding This}" Margin="20,0,0,0"/>
                             </Grid>

@@ -13,8 +13,18 @@ namespace XamarinNestedListViewContextMenuExample.ViewModels
         public Guid ID => _contentItem.ID;
         public ObservableCollection<ContentItemViewModel> ContentItems { get; set; } = new ObservableCollection<ContentItemViewModel>();
         public ContentItemViewModel This => this;
-        public GridLength Height = GridLength.Auto;
-        public GridLength SubItemsHeight = GridLength.Auto;
+        public GridLength Height
+        {
+            get => _height;
+            set => SetProperty(ref _height, value);
+        }
+        GridLength _height = GridLength.Auto;
+        public GridLength SubItemsHeight
+        {
+            get => _subItemsHeight;
+            set => SetProperty(ref _subItemsHeight, value);
+        }
+        GridLength _subItemsHeight = GridLength.Auto;
         public GridLength TotalHeight
         {
             get
@@ -85,6 +95,8 @@ namespace XamarinNestedListViewContextMenuExample.ViewModels
                 subItemsHeight += subContentItemHeight.Value;
             }
             SubItemsHeight = subItemsHeight;
+
+            _parentViewModel?.OnSubContentTextLabel_SizeChanged(this);
         }
     }
 }
