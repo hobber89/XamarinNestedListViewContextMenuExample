@@ -17,9 +17,8 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0" Grid.Column="1" Text="•" IsVisible="{Binding ShowContentText}"/>
-            <Label Grid.Row="0" Grid.Column="2" Text="{Binding ContentText}" SizeChanged="ContentTextLabel_SizeChanged" IsVisible="{Binding ShowContentText}"/>
-            <ListView Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding ContentItems}" HasUnevenRows="True" HorizontalOptions="Fill" IsVisible="{Binding HasSubContentItems}" Margin="0,-6,0,0"> 
-                <!-- Alternatively add 6 to TotalHeight! -->
+            <Label Grid.Row="0" Grid.Column="2" Text="{Binding ContentText}" SizeChanged="ContentTextLabel_SizeChanged" IsVisible="{Binding ShowContentText}" BackgroundColor="{Binding BackgroundColor}"/>
+            <ListView Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding ContentItems}" HasUnevenRows="True" HorizontalOptions="Fill" IsVisible="{Binding HasSubContentItems}" Margin="0,-6,0,0">                 <!-- Alternatively add 6 to TotalHeight! -->
                 <ListView.ItemTemplate HorizontalOptions="Fill">
                     <DataTemplate>
                         <ViewCell>
@@ -29,6 +28,9 @@
                                 </Grid.RowDefinitions>
                                 <views:NestedContentListView Grid.Row="0" Grid.Column="0" BindingContext="{Binding This}" Margin="20,0,0,0"/>
                             </Grid>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Highlight" Command="{Binding HighlightContentItemButtonCommandBinding}"/>
+                            </ViewCell.ContextActions>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

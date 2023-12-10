@@ -9,6 +9,13 @@ namespace XamarinNestedListViewContextMenuExample.ViewModels
 {
     internal class ContentItemViewModel : ViewModelBase
     {
+        public ButtonCommandBinding HighlightContentItemButtonCommandBinding { get; private set; }
+        public Color BackgroundColor
+        {
+            get => _backgroundColor;
+            set => SetProperty(ref _backgroundColor, value);
+        }
+        Color _backgroundColor = Color.Transparent;
         public string ContentText { get => _contentItem.ContentText; }
         public bool ShowContentText => ContentText != null;
         public Guid ID => _contentItem.ID;
@@ -48,7 +55,9 @@ namespace XamarinNestedListViewContextMenuExample.ViewModels
             _contentItem = contentItem;
             _parentViewModel = parentViewModel;
 
-            foreach(ContentItemModel subItem in _contentItem.ContentItems)
+            HighlightContentItemButtonCommandBinding = new ButtonCommandBinding(highlightContentItemButtonCommand, true);
+
+            foreach (ContentItemModel subItem in _contentItem.ContentItems)
             {
                 ContentItems.Add(new ContentItemViewModel(subItem, this));
             }
@@ -98,6 +107,11 @@ namespace XamarinNestedListViewContextMenuExample.ViewModels
             SubItemsHeight = subItemsHeight;
 
             _parentViewModel?.OnSubContentTextLabel_SizeChanged(this);
+        }
+
+        private void highlightContentItemButtonCommand()
+        {
+            BackgroundColor = Color.Red;
         }
     }
 }

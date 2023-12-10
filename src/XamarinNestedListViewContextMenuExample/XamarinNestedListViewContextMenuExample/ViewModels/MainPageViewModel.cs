@@ -18,7 +18,7 @@ namespace XamarinNestedListViewContextMenuExample.ViewModels
             TopLevelContentItem =  new ContentItemViewModel(mainContentItemList, null);
             ContentItemModel subContentItem1 = new ContentItemModel("FIRST ITEM");
 
-            ContentItemModel subContentItem1_1 = new ContentItemModel("FIRST SUB ITEM");
+            ContentItemModel subContentItem1_1 = new ContentItemModel("FIRST SUB ITEM (FIX HIGHLIGHTING ME PER CONTEXT MENU!)");
             subContentItem1.ContentItems.Add(subContentItem1_1);
             TopLevelContentItem.AddSubContentItem(subContentItem1);
 
