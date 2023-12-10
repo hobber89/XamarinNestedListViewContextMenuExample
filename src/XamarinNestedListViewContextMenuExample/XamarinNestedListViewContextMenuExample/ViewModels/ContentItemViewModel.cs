@@ -10,6 +10,7 @@ namespace XamarinNestedListViewContextMenuExample.ViewModels
     internal class ContentItemViewModel : ViewModelBase
     {
         public string ContentText { get => _contentItem.ContentText; }
+        public bool ShowContentText => ContentText != null;
         public Guid ID => _contentItem.ID;
         public ObservableCollection<ContentItemViewModel> ContentItems { get; set; } = new ObservableCollection<ContentItemViewModel>();
         public ContentItemViewModel This => this;

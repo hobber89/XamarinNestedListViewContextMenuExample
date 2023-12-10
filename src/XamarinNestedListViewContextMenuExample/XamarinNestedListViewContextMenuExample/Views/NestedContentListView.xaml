@@ -16,8 +16,8 @@
                 <ColumnDefinition Width="100*"/>     <!-- 2: ContentText -->
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="1" Text="•"/>
-            <Label Grid.Row="0" Grid.Column="2" Text="{Binding ContentText}" SizeChanged="ContentTextLabel_SizeChanged"/>
+            <Label Grid.Row="0" Grid.Column="1" Text="•" IsVisible="{Binding ShowContentText}"/>
+            <Label Grid.Row="0" Grid.Column="2" Text="{Binding ContentText}" SizeChanged="ContentTextLabel_SizeChanged" IsVisible="{Binding ShowContentText}"/>
             <ListView Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding ContentItems}" HasUnevenRows="True" HorizontalOptions="Fill" IsVisible="{Binding HasSubContentItems}" Margin="0,-6,0,0"> 
                 <!-- Alternatively add 6 to TotalHeight! -->
                 <ListView.ItemTemplate HorizontalOptions="Fill">

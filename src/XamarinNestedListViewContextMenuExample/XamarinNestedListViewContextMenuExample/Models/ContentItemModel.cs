@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace XamarinNestedListViewContextMenuExample.Models
@@ -12,7 +11,13 @@ namespace XamarinNestedListViewContextMenuExample.Models
 
         public ContentItemModel(string contentText, Guid? id = null)
         {
-            ContentText = contentText;
+            ContentText = contentText ?? throw new ArgumentNullException(nameof(contentText), "Must not be null!");
+            ID = id ?? Guid.NewGuid();
+        }
+
+        protected ContentItemModel(Guid? id = null)
+        {
+            ContentText = null;
             ID = id ?? Guid.NewGuid();
         }
     }
